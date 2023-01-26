@@ -1,0 +1,22 @@
+{
+  "name": "sui-gas-calc",
+  "version": "1.0.0",
+  "description": "SUI Gas Price Tools",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laine-sa/sui-gas-tools.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/laine-sa/sui-gas-tools/issues"
+  },
+  "homepage": "https://github.com/laine-sa/sui-gas-tools#readme",
+  "dependencies": {
+    "ts-node": "^10.9.1"
+  }
+}
