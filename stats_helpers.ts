@@ -41,27 +41,55 @@ export const calcWeightedMean = (validators: [Validator]) => {
     var total_delegation: number = 0
     validators.forEach((element: Validator) => {
         gas_multiples += element.next_epoch_gas_price * element.next_epoch_delegation
-        total_delegation += element.next_epoch_delegation
+        total_delegation += element.next_epoch_delegation+element.next_epoch_stake
     });
     return gas_multiples / total_delegation
 }
 
 export const nextReferenceGasPrice = (validators: [Validator]) => {
-    var total_delegation: number = 0
+    var total_power: number = 10000
+    var quorum: number = 6667
+    var max_power: number = 1000
+    var total_stake: number = 0
+    var excess_power: number = 0
+    var excess_receiving_stake: number = 0
+
+    // Get the total stake in the network
     validators.forEach((element: Validator) => {
-        total_delegation += element.next_epoch_delegation
+        total_stake += element.next_epoch_delegation + element.next_epoch_stake
+        
     });
 
-    var quorum = (2/3) * total_delegation
+    // Assign relative voting power and get the power to be redistributed
+    validators.forEach((element: Validator) => {
+        let power = ((element.next_epoch_delegation + element.next_epoch_stake) / total_stake) * total_power
+        element.voting_power = (power > max_power) ? max_power : power
+        if(power > max_power) {
+            excess_power = power - max_power
+        }
+        else {
+            excess_receiving_stake += element.next_epoch_delegation + element.next_epoch_stake
+        }
+    });
+
+    // Add the excess power to remaining validators
+    validators.forEach((element: Validator) => {
+        if(element.voting_power != undefined && element.voting_power < max_power) {
+            element.voting_power += ((element.next_epoch_delegation + element.next_epoch_stake) / excess_receiving_stake) * excess_power
+            if(element.voting_power > max_power) {
+                element.voting_power = max_power
+            }
+        }
+    });
 
     validators.sort((a,b) => a.next_epoch_gas_price - b.next_epoch_gas_price)
-    var cumulative_delegation: number = 0
+    var cumulative_power: number = 0
     var reference_gas_price:number = 0
 
     validators.forEach((element: Validator) => {
-        if(cumulative_delegation < quorum) {
+        if(cumulative_power < quorum) {
             reference_gas_price = element.next_epoch_gas_price
-            cumulative_delegation += element.next_epoch_delegation
+            if(element.voting_power != undefined) cumulative_power += element.voting_power
         }
     });
     return reference_gas_price

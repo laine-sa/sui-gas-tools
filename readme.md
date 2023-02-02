@@ -2,6 +2,8 @@
 
 This repo helps with rudimentary analysis of Sui validators' future reference gas price to allow operators to apply their own algorithms in determining their ideal future reference gas price.
 
+WARNING: THIS CODE IS EXPERIMENTAL, THE MATH HAS NOT BEEN EXTENSIVELY VERIFIED. USE AT OWN RISK.
+
 ## Basic usage
 
 Get list of validators and put it into a file called validators.json:

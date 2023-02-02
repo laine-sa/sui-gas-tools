@@ -14,5 +14,6 @@ export type Validator = {
     next_epoch_stake: number,
     next_epoch_delegation: number,
     next_epoch_gas_price: number,
-    next_epoch_commission_rate: number
+    next_epoch_commission_rate: number,
+    voting_power?: number
 }
