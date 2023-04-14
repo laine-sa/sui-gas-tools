@@ -48,6 +48,9 @@ git clone https://github.com/DataKnox/sui-gas-tools.git && cd sui-gas-tools/
 ```
 ## Update your env.json file to have your current active address
 ```
+sudo nano env.json
+```
+```
 {
     "ACTIVE_ADD_TESTNET": "Testnet address here",
     "ACTIVE_ADD_MAINNET": "mainnet address here"
