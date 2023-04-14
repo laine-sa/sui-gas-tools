@@ -15,8 +15,13 @@ export const starter = () => {
 
 }
 
+function delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export const ender = async () => {
     await starter()
+    await delay(10000)
     const validator = validators.find((v: any) => v.suiAddress === env.ACTIVE_ADD_TESTNET)
 
     let nrgp = nextReferenceGasPrice(validators)
