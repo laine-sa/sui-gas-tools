@@ -1,9 +1,9 @@
 import { nextReferenceGasPrice } from './stats_helpers'
 const validators: any = require('./validators.json').result.activeValidators
 const { spawn } = require('node:child_process')
-require('dotenv').config({ path: __dirname + '/.env' });
+const env: any = require('./env.json')
 
-const validator = validators.find((v: any) => v.suiAddress === process.env.ACTIVE_ADD)
+const validator = validators.find((v: any) => v.suiAddress === env.ACTIVE_ADD_TESTNET)
 
 let nrgp = nextReferenceGasPrice(validators)
 
