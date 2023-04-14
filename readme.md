@@ -29,6 +29,8 @@ From this data you can determine what reference price to set for yourself based 
 ## Knoxs Edits
 NOTE: This assumes you are using a user account named "sui" and your working directory is /home/sui
 
+## First install Node and deps
+
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 ```
@@ -45,11 +47,15 @@ npm i -g ts-node typescript
 ```
 sudo ln /home/sui/.nvm/versions/node/v19.9.0/bin/node /usr/bin/node
 ```
+## Clone the repo and prep the environment
 ```
 cd /home/sui
 ```
 ```
 git clone https://github.com/DataKnox/sui-gas-tools.git && cd sui-gas-tools/
+```
+```
+sh update_validators.sh
 ```
 ## Update your env.json file to have your current active address
 ```
@@ -74,7 +80,7 @@ Example in cron_example.txt for a testnet validator
 ```
 0 */4 * * * /home/sui/.nvm/versions/node/v19.9.0/bin/ts-node /home/sui/sui-gas-tools/runner_testnet.ts > /home/sui/sui-gas-tools/gascheck.ts.log 2>&1
 ```
-## Monitor
+## Monitor - first run takes awhile
 ```
 sudo journalctl --since "5 minutes ago" | grep cron
 ```
