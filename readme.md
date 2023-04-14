@@ -31,6 +31,7 @@ From this data you can determine what reference price to set for yourself based 
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 ```
+Log out and log back in to reset environment
 ```
 nvm install node # "node" is an alias for the latest version
 ```
@@ -39,6 +40,9 @@ nvm use node
 ```
 ```
 npm i -g ts-node typescript
+```
+```
+sudo ln /home/sui/.nvm/versions/node/v19.9.0/bin/node /usr/bin/node
 ```
 ```
 cd /home/sui
