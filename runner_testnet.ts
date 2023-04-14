@@ -3,10 +3,6 @@ const validators: any = require('./validators.json').result.activeValidators
 const { spawn, exec } = require('node:child_process')
 const env: any = require('./env.json')
 
-
-
-
-
 export const starter = () => {
     const scriptPrep: any = spawn('sh', ['./update_validators.sh'])
     scriptPrep.stderr.on('data', (data: string) => {
@@ -27,6 +23,9 @@ export const ender = async () => {
     let nrgp = nextReferenceGasPrice(validators)
     if (validator.gasPrice == nrgp * 0.98) {
         console.log('Reference Gas Price is correct')
+    }
+    else if (validator.nextEpochGasPrice == nrgp * 0.98) {
+        console.log('Reference Gas Price is set to become correct')
     }
     else {
         console.log('Reference Gas Price is incorrect')
