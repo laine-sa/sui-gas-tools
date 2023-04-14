@@ -21,11 +21,8 @@ export const ender = async () => {
     const validator = validators.find((v: any) => v.suiAddress === env.ACTIVE_ADD_MAINNET)
 
     let nrgp = nextReferenceGasPrice(validators)
-    if (validator.gasPrice == nrgp * 0.98) {
+    if (validator.nextEpochGasPrice == nrgp * 0.98) {
         console.log('Reference Gas Price is correct')
-    }
-    else if (validator.nextEpochGasPrice == nrgp * 0.98) {
-        console.log('Reference Gas Price is set to become correct')
     }
     else {
         console.log('Reference Gas Price is incorrect')
