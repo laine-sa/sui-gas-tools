@@ -33,11 +33,11 @@ else {
     const args: string[] = command.split(' ')
     const options: any = args.slice(1, -1)
     const child: any = spawn(args[0], options)
-    child.stdout.on('data', (data) => {
+    child.stdout.on('data', (data: string) => {
         console.log(`child stdout:\n${data}`);
     });
 
-    child.stderr.on('data', (data) => {
+    child.stderr.on('data', (data: string) => {
         console.error(`child stderr:\n${data}`);
     })
 }
