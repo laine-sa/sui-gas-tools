@@ -27,6 +27,7 @@ The reference gas price is the price submitted by the last validator that falls 
 From this data you can determine what reference price to set for yourself based on your individual per epoch costs and profitability.
 
 ## Knoxs Edits
+NOTE: This assumes you are using a user account named "sui" and your working directory is /home/sui
 
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
