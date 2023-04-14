@@ -10,6 +10,8 @@ if (validator.gasPrice == nrgp) {
     console.log('Reference Gas Price is correct')
 }
 else {
+    console.log('Reference Gas Price is incorrect')
+    console.log(nrgp)
     // const set_rgp = nrgp * 0.95
     // console.log('setting reference gas price to: ', set_rgp)
     // fetch('https://rpc-testnet.suiscan.xyz:443',
@@ -28,10 +30,10 @@ else {
     //     } //fetch
     // ) //fetch
     nrgp = nrgp * 0.98
-    const command: string = `sui validator update-gas-price ${nrgp}`
+    const command: string = `/home/sui/sui/target/debug/sui validator update-gas-price ${nrgp}`
     // loop over each word in command and place each word in an array
     const args: string[] = command.split(' ')
-    const options: any = args.slice(1, -1)
+    const options: any = args.slice(1)
     const child: any = spawn(args[0], options)
     child.stdout.on('data', (data: string) => {
         console.log(`child stdout:\n${data}`);
