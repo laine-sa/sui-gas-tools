@@ -4,7 +4,7 @@ const { spawn, exec } = require('node:child_process')
 const env: any = require('./env.json')
 
 export const starter = () => {
-    const scriptPrep: any = spawn('sh', ['./update_validators.sh'])
+    const scriptPrep: any = spawn('sh', ['/home/sui/sui-gas-tools/update_validators.sh'])
     scriptPrep.stderr.on('data', (data: string) => {
         console.error(`child stderr:\n${data}`);
     })
