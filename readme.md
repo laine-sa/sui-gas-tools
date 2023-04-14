@@ -52,6 +52,9 @@ git clone https://github.com/DataKnox/sui-gas-tools.git && cd sui-gas-tools/
 ```
 ## Update your env.json file to have your current active address
 ```
+sui client active-address
+```
+```
 sudo nano env.json
 ```
 ```
@@ -66,7 +69,14 @@ crontab -e
 # select your favorite editer
 ```
 ## Paste in the path to the correct file based on which network you are operating on
-Example in cron_example.txt
+Example in cron_example.txt for a testnet validator
 ```
 0 */4 * * * /home/sui/.nvm/versions/node/v19.9.0/bin/ts-node /home/sui/sui-gas-tools/runner_testnet.ts > /home/sui/sui-gas-tools/gascheck.ts.log 2>&1
+```
+## Monitor
+```
+sudo journalctl --since "5 minutes ago" | grep cron
+```
+```
+cat /home/sui/sui-gas-tools/gascheck.ts.log
 ```
