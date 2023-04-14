@@ -1,8 +1,14 @@
 import { nextReferenceGasPrice } from './stats_helpers'
 const validators: any = require('./validators.json').result.activeValidators
 const { spawn } = require('node:child_process')
+import { load } from 'ts-dotenv';
+const env = load({
+    OP_CAP_ID: String,
+    ACTIVE_ADD: String,
+});
 
-const validator = validators.find((v: any) => v.suiAddress === '0x407f2bd2d36f40e57e4b725e7b80d4afc588fd2deb746ad62ccc6ed086798e48')
+
+const validator = validators.find((v: any) => v.suiAddress === env.ACTIVE_ADD)
 
 let nrgp = nextReferenceGasPrice(validators)
 
@@ -12,24 +18,8 @@ if (validator.gasPrice == nrgp) {
 else {
     console.log('Reference Gas Price is incorrect')
     console.log(nrgp)
-    // const set_rgp = nrgp * 0.95
-    // console.log('setting reference gas price to: ', set_rgp)
-    // fetch('https://rpc-testnet.suiscan.xyz:443',
-    //     {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'body': JSON.stringify({
-    //                 "jsonrpc": "2.0",
-    //                 "id": 1,
-    //                 "method": "suix_getLatestSuiSystemState",
-    //                 "params": ["0x5"]
-    //             },
-    //             )//body
-    //         } //headers
-    //     } //fetch
-    // ) //fetch
     nrgp = nrgp * 0.98
+    console.log(`setting reference gas price to: ${nrgp}`)
     const command: string = `/home/sui/sui/target/debug/sui validator update-gas-price ${nrgp}`
     // loop over each word in command and place each word in an array
     const args: string[] = command.split(' ')
