@@ -23,6 +23,9 @@ export const ender = async () => {
     let nrgp = nextReferenceGasPrice(validators)
     if (validator.nextEpochGasPrice == nrgp * 0.98) {
         console.log('Reference Gas Price is correct')
+        console.log(nrgp)
+        console.log(validator.nextEpochGasPrice == nrgp * 0.98)
+        console.log(validator.nextEpochGasPrice === nrgp * 0.98)
     }
     else {
         console.log('Reference Gas Price is incorrect')
