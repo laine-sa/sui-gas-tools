@@ -36,10 +36,10 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 ```
 Log out and log back in to reset environment
 ```
-nvm install node # "node" is an alias for the latest version
+nvm install 19.9.0 # "node" is an alias for the latest version
 ```
 ```
-nvm use node
+nvm use 19.9.0
 ```
 ```
 npm i -g ts-node typescript
