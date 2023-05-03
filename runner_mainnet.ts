@@ -19,7 +19,7 @@ export const ender = async () => {
     await starter()
     await delay(10000)
     const validator = validators.find((v: any) => v.suiAddress === env.ACTIVE_ADD_MAINNET)
-
+    console.log(validator)
     let nrgp = nextReferenceGasPrice(validators)
     if (validator.nextEpochGasPrice == nrgp * 0.98) {
         console.log('Reference Gas Price is correct')
