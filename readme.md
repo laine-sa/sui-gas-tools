@@ -6,16 +6,10 @@ WARNING: THIS CODE IS EXPERIMENTAL, THE MATH HAS NOT BEEN EXTENSIVELY VERIFIED. 
 
 ## Basic usage
 
-Get list of validators and put it into a file called validators.json:
+Copy the .env.sample file to .env and change the RPC URL if you like. The following command gets the latest system state and calculates the next RGP and other statistics.
 
 ```bash
-sh update_validators.sh
-```
-
-This is the current list at this point in time, be sure to repeat this everytime you want to do a fresh analysis (at least every epoch).
-
-```bash
-ts-node stats.ts
+ts-node run.ts
 ```
 
 Will print out a simple statistical analysis.
