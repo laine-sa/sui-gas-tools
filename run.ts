@@ -1,6 +1,5 @@
 import { Validator } from './types'
 import { calcMax, calcMin, calcMean, calcMedian, calcWeightedMean, nextReferenceGasPrice } from './stats_helpers'
-const { exec } = require('node:child_process')
 const axios = require ('axios')
 require('dotenv').config()
 
