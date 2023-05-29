@@ -19,6 +19,7 @@
   "dependencies": {
     "@types/node": "^18.11.18",
     "axios": "^1.4.0",
+    "child_process": "^1.0.2",
     "dotenv": "^16.0.3",
     "node": "^20.2.0",
     "ts-node": "^10.9.1",
