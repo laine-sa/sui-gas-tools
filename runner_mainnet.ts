@@ -32,7 +32,7 @@ export const ender = async () => {
         console.log(nrgp)
         nrgp = nrgp * 0.98
         console.log(`setting reference gas price to: ${nrgp}`)
-        const command: string = `/home/sui/sui/target/debug/sui validator update-gas-price ${nrgp}`
+        const command: string = `/home/sui/sui/target/release/sui validator update-gas-price ${nrgp}`
         // loop over each word in command and place each word in an array
         const args: string[] = command.split(' ')
         const options: any = args.slice(1)
