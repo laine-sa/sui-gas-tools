@@ -21,7 +21,9 @@ export const ender = async () => {
     const validator = validators.find((v: any) => v.suiAddress === env.ACTIVE_ADD_MAINNET)
     console.log(validator)
     let nrgp = nextReferenceGasPrice(validators)
-    if (validator.nextEpochGasPrice == nrgp * 0.98) {
+    nrgp = +nrgp
+    const target_nrgp = Math.round((nrgp * 0.98))
+    if (validator.nextEpochGasPrice == target_nrgp) {
         console.log('Reference Gas Price is correct')
         console.log(nrgp)
         console.log(validator.nextEpochGasPrice == nrgp * 0.98)
@@ -30,7 +32,7 @@ export const ender = async () => {
     else {
         console.log('Reference Gas Price is incorrect')
         console.log(nrgp)
-        nrgp = nrgp * 0.98
+        nrgp = target_nrgp
         console.log(`setting reference gas price to: ${nrgp}`)
         const command: string = `/home/sui/sui/target/release/sui validator update-gas-price ${nrgp}`
         // loop over each word in command and place each word in an array
